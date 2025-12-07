@@ -1,0 +1,22 @@
+name: Notofocación
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enviar correo de notificación
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: 'Notofocación: Push realizado'
+          body: 'Se ha realizado un push al repositorio docker-api.'
+          to: 'elazirivilasidris1@gmail.com'
+          from: 'elazirivilasidris1@gmail.com'
